@@ -7,7 +7,10 @@ description: >
   any drafted text (blog posts, emails, Slack messages, social posts, docs) for
   AI-sounding language. Also activate after generating any written content when
   the user has asked for natural or human-sounding output.
-version: 0.1.0
+metadata:
+  version: 0.1.0
+  category: utilities
+  sources: []
 ---
 
 # Humanizer

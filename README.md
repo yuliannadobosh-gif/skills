@@ -6,6 +6,8 @@ Curated skill collection for business data analysis powered by the [Coupler.io](
 
 Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E-commerce, Marketing & Ads — then by shared **Capability** and general **Utilities**.
 
+The machine-readable catalog is `skills-index.json`. **Do not edit it by hand** — it is generated from `SKILL.md` frontmatter. Change the skill files, then run `python .github/scripts/generate_skill_index.py`, or let the GitHub Action regenerate it on merge to `main`.
+
 ### Finance
 
 | Skill | File | What it does |
@@ -31,6 +33,57 @@ Skills are organized by ICP (ideal customer profile) first — Finance, Sales, E
 | **marketing-analytics** | `marketing-and-ads/marketing-analytics/` | Marketing performance — campaign analysis, cross-channel comparison, anomaly detection. Covers paid, organic, email, and social. |
 | **ppc-analytics** | `marketing-and-ads/ppc-analytics/` | Paid-ads (PPC) performance — per-platform funnel traces, efficiency-first comparison (ranked on CPA/ROAS), budget pacing, ad-fatigue checks, and honest attribution (never blends conversions across platforms; offers an independent-source cross-check and blended CAC). Facebook + Google Ads first-class. |
 
+#### Google Ads deep dives
+
+Eight Google-Ads-only skills in `marketing-and-ads/google-ads/`. Each one owns a single question and hands off to the others rather than duplicating them — `ppc-analytics` stays the cross-platform paid view. When a request needs a field no packaged report type carries, they route to `capability/google-ads-custom-gaql`.
+
+| Skill | What it does |
+| --- | --- |
+| **google-ads-performance-review** | The baseline read — what changed in the account and why. Period comparison, cost-per-lead moves, impression-share loss. Run this before deciding anything else. |
+| **google-ads-waste-and-scale** | The cutting view — search-term waste, negative-keyword candidates, what to pause, and a budget-neutral reallocation proposal. |
+| **google-ads-keyword-and-quality-score-analysis** | The earning view — which keywords deserve more money, which overcharge for the same clicks, match-type and quality-score diagnosis. |
+| **google-ads-budget-pacing** | Month-end arithmetic — on-track or overspending, daily target, which campaigns are budget-capped, and whether more budget would do anything. |
+| **google-ads-conversion-tracking-audit** | Whether the conversion numbers can be trusted at all — double-counting, Analytics disagreement, untracked spend. Run before any cost or return conclusion. |
+| **google-ads-settings-audit** | Account configuration priced in the spend flowing through it — search partners, Display expansion, location intent, auto-apply, ad rotation, conversion windows, bid strategies. |
+| **google-ads-pmax-transparency** | Opening the Performance Max black box — Shopping cannibalisation, brand-traffic buying, asset-group performance. |
+| **google-ads-client-report** | The monthly client write-up — what to say, how to present a missed target. Built only when asked. |
+
+#### TikTok Ads deep dives
+
+Eleven TikTok-only skills in `marketing-and-ads/tiktok-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **tiktok-ads-performance-review** | The baseline read — what moved, which campaigns moved it, and how much of the change each one caused. Run this before deciding anything else. |
+| **tiktok-ads-waste-and-scale** | The cutting view — what to turn off and what to fund with the money, as one decision rather than two. |
+| **tiktok-ads-creative-analysis** | Which videos earn their spend, where the losing ones lose people, and what the next round should be. |
+| **tiktok-ads-creative-fatigue-and-velocity** | Which videos are dying, how long they have left, and how many new ones a month the account needs to keep up. |
+| **tiktok-ads-audience-analysis** | Which audiences earn their spend — and whether targeting is doing any work the creative was not already doing. |
+| **tiktok-ads-budget-pacing** | Where the month ends if nothing changes, the daily spend to land on plan, and which ad groups will not take more money. |
+| **tiktok-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted before you move budget on them. Run before any cost or return conclusion. |
+| **tiktok-ads-structure-and-learning-review** | Whether the account is split into more ad groups than its budget can feed, priced in what that costs in delivery. |
+| **tiktok-ads-placement-geo-and-device** | Where and when the money actually goes, and what each of those places is worth. |
+| **tiktok-ads-gmv-max-and-shop-review** | What GMV Max is actually buying, whether it cannibalises campaigns already making those sales, and which products carry it. |
+| **tiktok-ads-client-report** | The monthly client write-up — the kind that survives being questioned. Built only when asked. |
+
+#### Meta / Facebook Ads deep dives
+
+Eleven Meta-only skills in `marketing-and-ads/facebook-ads/`. Same shape as the Google pack — each owns a single question and routes to its siblings rather than duplicating them, with `ppc-analytics` still the cross-platform paid view.
+
+| Skill | What it does |
+| --- | --- |
+| **facebook-ads-performance-review** | The baseline read — what moved this period and which campaigns moved it. Cost decomposed into CPM, CTR and conversion rate. Run this before deciding anything else. |
+| **facebook-ads-waste-and-scale** | The cutting view — ad sets spending without results, creative past its fatigue threshold, each cut paired with where the money should go instead. |
+| **facebook-ads-creative-analysis** | Which ads win and why — thumbstop and hook rate, what the winners have in common, and the brief for the next production round. |
+| **facebook-ads-creative-fatigue** | How long the winners have left — CTR decay against first-week baseline, CPM drift, a refresh queue ranked by spend at risk, and monthly creative volume needed. |
+| **facebook-ads-audience-analysis** | Which audiences earn their spend — lookalike vs interest vs broad vs retargeting, saturation as audiences age, and who is being paid for twice. |
+| **facebook-ads-budget-pacing** | Month-end arithmetic — on-track or overspending, required daily spend, which ad sets are capped, and whether more budget would do anything. |
+| **facebook-ads-pixel-and-attribution-audit** | Whether the conversion numbers can be trusted — pixel and CAPI coverage, deduplication, view-through share, the platform-vs-store gap. Run before any cost or return conclusion. |
+| **facebook-ads-settings-audit** | Configuration priced in the spend flowing through it — optimisation goals, bid strategy, Advantage+ and expansion toggles, attribution setting. Most of these default in Meta's favour. |
+| **facebook-ads-structure-and-learning-review** | How the account is organised and what that costs in learning — ad sets stuck below event volume, fragmentation, audience overlap, consolidation with the spend affected. |
+| **facebook-ads-placement-geo-and-device** | Where the budget actually goes — Feed vs Reels vs Stories vs Audience Network, region, device and delivery hour, each with what it is worth. |
+| **facebook-ads-client-report** | The monthly client write-up — KPIs against goal, creative winners, the attribution caveat stated once and plainly. Built only when asked. |
+
 ### Capability
 
 Cross-ICP building blocks — compose these with a domain skill above.
@@ -39,6 +92,7 @@ Cross-ICP building blocks — compose these with a domain skill above.
 | --- | --- | --- |
 | **get-started** | `capability/get-started/SKILL.md` | Onboard a brand-new or empty workspace from zero to the user's own data in the chat — anchor on stated intent, route template-or-scratch, script the guided credential round-trip, build + run the first dataflow, then offer a refresh schedule. |
 | **create-dataflow** | `capability/create-dataflow/SKILL.md` | Configure a Coupler.io dataflow end to end — pick an integration, attach a credential, wire source → destination, and trigger a run. |
+| **google-ads-custom-gaql** | `capability/google-ads-custom-gaql/SKILL.md` | Build a Custom GAQL source when no packaged Google Ads report type carries the field — and name the packaged type when one does. Covers resource choice, date macros, and the raw column names and micros that come back. |
 | **generate-data-set-context** | `capability/generate-data-set-context/SKILL.md` | Produce an AI-readable description for a dataset so future sessions inherit its schema context. |
 | **refine-prompt** | `capability/refine-prompt/SKILL.md` | Sharpen a vague or underspecified analytics request into a detailed, actionable prompt — filling in time period, metrics, data sources, and output format — before analysis. |
 | **report-generation** | `capability/report-generation/SKILL.md` | Industry-agnostic report formatter and validator. Turns analysis output into a structured TL;DR → Metrics → Context → Recommendations → Next Questions report, then runs a Phase 2 validation pass (arithmetic, units, claim-vs-data, logical gates). Compose with a domain skill for domain-flavored reports. |
@@ -47,7 +101,7 @@ Cross-ICP building blocks — compose these with a domain skill above.
 
 | Skill | Location | What it does |
 | --- | --- | --- |
-| **humanizer** | `utilities/humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. Also available as the `/humanize` slash command. |
+| **humanizer** | `utilities/humanizer/` | Rewrites AI-generated text to remove detectable patterns and add human voice. |
 | **coupler-live-artifact** | `utilities/coupler-live-artifact/` | Builds a live Cowork artifact — a persistent, re-openable HTML widget backed by a Coupler.io dataflow that auto-refreshes (live dashboards, daily-check pages, data explorers). |
 
 ---
@@ -105,6 +159,36 @@ These are the tools the Coupler.io MCP server exposes. Skills use them automatic
 
 ---
 
+## Skill frontmatter
+
+The [Agent Skills spec](https://agentskills.io/specification#frontmatter) allows only six top-level frontmatter keys — `name`, `description`, `license`, `compatibility`, `metadata`, `allowed-tools` — and a `SKILL.md` carrying anything else can be rejected outright. Claude Code's own [frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference) accepts considerably more (`when_to_use`, `model`, `effort`, `context`, `agent`, `argument-hint`, `disable-model-invocation`, `allowed-tools`, `disallowed-tools`, and others), but those are Claude-only extensions that other runtimes ignore. We target the portable six, so everything of ours lives under `metadata`:
+
+```yaml
+---
+name: sales-analytics
+description: Use this skill when the user wants to analyze sales pipeline, review win rates, … # for the agent: what it does and when to reach for it
+metadata:
+  short_description: Pipeline health, win rates, sales velocity and rep performance, straight from your CRM. # for humans: one line, shown in the UI
+  category: sales
+  sources:
+    - Salesforce
+---
+```
+
+`description` is the agent's routing signal, so it is long and stuffed with trigger phrases — unreadable in a skill catalog. `short_description` is the human-facing counterpart: one sentence, no "use this skill when", safe to render in a card or list. It is optional; consumers should fall back to a truncated `description` when it is absent.
+
+`python .github/scripts/generate_skill_index.py --check` enforces the length limits:
+
+| Field | Limit | Source |
+| --- | --- | --- |
+| `name` | 64 characters | [Spec](https://agentskills.io/specification#frontmatter). Renaming means renaming the folder too — the two must match. |
+| `description` | 1024 characters | [Spec](https://agentskills.io/specification#frontmatter). |
+| `metadata.short_description` | 200 characters | Ours. It renders in the UI, where anything longer than a sentence stops being scannable. |
+
+Above 500 characters a `description` only earns a **warning** — it still passes. There is no consensus on the right length: [obra/superpowers](https://github.com/obra/superpowers) ships descriptions of 79–234 characters, while [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) runs 432–1014. The warning is a nudge to check the tail is still earning its context, not a rule — agents weigh the opening sentence most heavily.
+
+Both descriptions land in `skills-index.json`, which is what the API and the MCP server read.
+
 ## Installation
 
 **From the marketplace** — add this repo as a plugin marketplace, then install the per-cluster plugin(s) you want:
@@ -121,19 +205,33 @@ Each ICP is its own plugin, so you install only what you need. Available plugins
 | `coupler-finance` | finance-analytics |
 | `coupler-sales` | sales-analytics |
 | `coupler-ecommerce` | ecom-analytics |
-| `coupler-marketing-ads` | marketing-analytics |
-| `coupler-capability` | get-started, create-dataflow, generate-data-set-context, refine-prompt, report-generation |
-| `coupler-utilities` | coupler-live-artifact |
-| `humanizer` | humanizer (+ `/humanize` command) |
+| `coupler-marketing-ads` | marketing-analytics, ppc-analytics, + the 8 Google Ads, 11 Meta / Facebook Ads and 11 TikTok Ads deep dives |
+| `coupler-capability` | get-started, create-dataflow, google-ads-custom-gaql, generate-data-set-context, refine-prompt, report-generation |
+| `coupler-utilities` | coupler-live-artifact, humanizer |
 
-**As a Claude Code plugin (repo-wide)** — add to your `.claude/settings.json`:
+Plugin skills are namespaced by their plugin, so they can be invoked explicitly as `/coupler-finance:finance-analytics`. Most of them are model-invoked too — Claude reaches for them when the request matches their description. If the install summary says `Run /reload-plugins to activate.`, run that.
+
+**Install only the plugin you need.** Every skill's description stays in context for the whole session, so a plugin's cost scales with how many skills it carries. `coupler-marketing-ads` bundles 32 and adds roughly 5.5k tokens to every session; the single-skill plugins add a few hundred. Check any plugin before installing it:
+
+```
+claude plugin details coupler-marketing-ads@coupler-io-skills
+```
+
+**For a whole team** — register the marketplace in the repository's `.claude/settings.json` so collaborators get it once they trust the folder:
 
 ```json
 {
-  "plugins": [
-    "https://github.com/coupler-io/skills"
-  ]
+  "extraKnownMarketplaces": {
+    "coupler-io-skills": {
+      "source": {
+        "source": "github",
+        "repo": "coupler-io/skills"
+      }
+    }
+  }
 }
 ```
 
-**Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. The skill activates automatically when its trigger phrases are matched.
+This adds the marketplace, not the plugins. Each person still runs `/plugin install <plugin>@coupler-io-skills` to pick what they want. To pre-enable plugins as well, see [`enabledPlugins`](https://code.claude.com/docs/en/settings-reference#plugin-settings).
+
+**Manual** — copy any skill folder (each contains a `SKILL.md`) into your project's `.claude/skills/` directory. Skills installed this way are not namespaced, and Claude activates them when the request matches their description.
