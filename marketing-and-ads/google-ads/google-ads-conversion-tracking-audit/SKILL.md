@@ -7,6 +7,8 @@ description: >
   even without the word "audit". Run before trusting any cost or return conclusion about the
   account. Google Ads only.
 metadata:
+  title: "Google Ads Conversion Tracking Audit"
+  short_description: "Checks whether you can trust your Google Ads conversion numbers before you move budget, including double counting and untracked spend."
   version: 2.0.0
   category: marketing-and-ads
   sources:
@@ -14,6 +16,8 @@ metadata:
 ---
 
 # Google Ads Conversion Tracking Audit
+
+Checks whether you can trust your Google Ads conversion numbers before you move budget, including double counting and untracked spend. Google Ads Conversion Tracking Audit is a Coupler.io AI agent skill that works with live data from Google Ads.
 
 **Tells you whether you can trust your Google Ads conversion numbers — before you move budget on
 them.**
@@ -147,7 +151,7 @@ attributed. Split two very different cases:
 | Case | What it is | Whose problem |
 |---|---|---|
 | No action attached, or a campaign type outside the conversion setup | Measurement failure — spend is unaccountable | This skill |
-| Tracking works on the same action elsewhere, this campaign just produces nothing | Performance | `google-ads-waste-and-scale` |
+| Tracking works on the same action elsewhere, this campaign just produces nothing | Performance | `google-ads-wasted-spend-and-scaling` |
 
 Report it as a figure **and** a share of account spend — "8% of spend is unmeasured" lands, "£4,120"
 doesn't. Where an independent source exists, add a directional cross-check: expect a gap, describe its
@@ -210,10 +214,10 @@ cheaper.
 
 | Go here instead when | Skill |
 |---|---|
-| The question is account configuration, not conversion tracking | `google-ads-settings-audit` |
-| The numbers are trustworthy and the question is what they say | `google-ads-performance-review` |
-| A campaign converts nothing but tracking works elsewhere | `google-ads-waste-and-scale` |
-| Untracked spend is concentrated in Performance Max | `google-ads-pmax-transparency` |
+| The question is account configuration, not conversion tracking | `google-ads-account-settings-audit` |
+| The numbers are trustworthy and the question is what they say | `google-ads-performance-report` |
+| A campaign converts nothing but tracking works elsewhere | `google-ads-wasted-spend-and-scaling` |
+| Untracked spend is concentrated in Performance Max | `google-ads-performance-max-analysis` |
 | The pacing verdict depends on these numbers | `google-ads-budget-pacing` |
 | The findings are going to a client | `google-ads-client-report` |
 | Conversion actions are needed at ad group level | `google-ads-custom-gaql` |

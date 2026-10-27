@@ -15,7 +15,7 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "skills-index.json"
 SKILL_FILENAME = "SKILL.md"
-SKIP_DIR_NAMES = {".git", "node_modules", "__pycache__"}
+SKIP_DIR_NAMES = {".git", "node_modules", "__pycache__", ".agents", ".claude"}
 
 
 def parse_frontmatter(path: Path) -> dict[str, Any]:
@@ -69,6 +69,7 @@ def skill_entry(path: Path, repo_root: Path) -> dict[str, Any]:
         "sources": normalize_sources(
             metadata.get("sources", data.get("sources")), path
         ),
+        "title": normalize_text(metadata.get("title")),
         "short_description": normalize_text(metadata.get("short_description")),
         "description": normalize_text(data.get("description")),
     }
@@ -104,6 +105,10 @@ DESCRIPTION_MAX_CHARS = 1024
 
 # Ours, since the spec says nothing about a human-facing summary.
 SHORT_DESCRIPTION_MAX_CHARS = 200
+
+# Ours too: the human-facing display name (page H1, skill card). Kept short
+# enough to survive a search-result title once the site suffix is appended.
+TITLE_MAX_CHARS = 60
 
 # Advisory only. Descriptions past this still load fine - published collections
 # sit either side of it, obra/superpowers at 79-234 characters and
@@ -235,6 +240,13 @@ SHORT_DESCRIPTION_GUIDANCE = (
 )
 
 
+TITLE_GUIDANCE = (
+    "A skill's `metadata.title` is the human-facing name shown on the skill "
+    "page and card. Keep it to the platform plus the job, in the words people "
+    "search for; the kebab-case `name` stays the machine id."
+)
+
+
 def print_long_description_warnings(warnings: list[dict[str, Any]]) -> None:
     for skill in warnings:
         print(
@@ -294,6 +306,8 @@ def main(argv: list[str] | None = None) -> int:
         skills, "short_description", SHORT_DESCRIPTION_MAX_CHARS
     )
 
+    long_titles = find_too_long(skills, "title", TITLE_MAX_CHARS)
+
     if invalid_names:
         print_invalid_names(invalid_names)
     if mismatches:
@@ -309,6 +323,8 @@ def main(argv: list[str] | None = None) -> int:
             DESCRIPTION_MAX_CHARS,
             DESCRIPTION_GUIDANCE,
         )
+    if long_titles:
+        print_too_long(long_titles, "title", TITLE_MAX_CHARS, TITLE_GUIDANCE)
     if long_short_descriptions:
         print_too_long(
             long_short_descriptions,
@@ -324,6 +340,7 @@ def main(argv: list[str] | None = None) -> int:
         or long_names
         or long_descriptions
         or long_short_descriptions
+        or long_titles
     ):
         return 1
 

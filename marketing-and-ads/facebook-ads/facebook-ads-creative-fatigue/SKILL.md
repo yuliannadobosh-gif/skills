@@ -7,6 +7,8 @@ description: >
   read; for which creative wins in the first place, use the creative analysis skill instead.
   Meta / Facebook Ads only.
 metadata:
+  title: "Facebook Ads Creative Fatigue"
+  short_description: "Shows which Meta ads are wearing out, how long each one has left, and how many new ads you need each month."
   version: 1.0.0
   category: marketing-and-ads
   sources:
@@ -14,6 +16,8 @@ metadata:
 ---
 
 # Facebook Ads Creative Fatigue
+
+Shows which Meta ads are wearing out, how long each one has left, and how many new ads you need each month. Facebook Ads Creative Fatigue is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
 
 **Tells you which ads are dying, how long they have left, and how much new creative you need to keep up.**
 
@@ -171,18 +175,18 @@ recompute and the most reusable.
 
 ## Related skills
 
-- `facebook-ads-creative-analysis` — which creative wins in the first place, and what the next round
+- `facebook-ads-creative-performance-analysis` — which creative wins in the first place, and what the next round
   should be. This skill answers how long the current round has left.
-- `facebook-ads-audience-analysis` — when frequency is rising because the audience is too small rather
+- `facebook-ads-audience-targeting-analysis` — when frequency is rising because the audience is too small rather
   than the ad too old.
-- `facebook-ads-waste-and-scale` — turning the refresh queue into a funding decision.
-- `facebook-ads-performance-review` — where a rising account-level CPM was first noticed.
+- `facebook-ads-wasted-spend-and-scaling` — turning the refresh queue into a funding decision.
+- `facebook-ads-performance-report` — where a rising account-level CPM was first noticed.
 
 ## Next Question (REQUIRED)
 
 - Large spend at risk → "About £6,000 a month is running through ads that will cross target within
   three weeks. Want the production brief written up? I can chart the decay curves alongside it."
 - Frequency rising, CTR flat → "The ads still work; you are running out of people. Want me to check
-  whether the audiences can be widened? — `facebook-ads-audience-analysis`."
+  whether the audiences can be widened? — `facebook-ads-audience-targeting-analysis`."
 - Nothing fatiguing → "Nothing is tiring yet, and the lifespan here is about five weeks. Want me to
   set the refresh cadence off that so it never becomes urgent?"

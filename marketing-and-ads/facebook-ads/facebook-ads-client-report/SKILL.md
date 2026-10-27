@@ -7,6 +7,8 @@ description: >
   they never say the word "report". For agencies and in-house teams reporting upward.
   Meta / Facebook Ads only.
 metadata:
+  title: "Facebook Ads Client Report"
+  short_description: "Writes your monthly Meta ads report for a client, measured against the targets you agreed, with misses explained and next month's plan."
   version: 1.0.0
   category: marketing-and-ads
   sources:
@@ -14,6 +16,8 @@ metadata:
 ---
 
 # Facebook Ads Client Report
+
+Writes your monthly Meta ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. Facebook Ads Client Report is a Coupler.io AI agent skill that works with live data from Facebook Ads (Meta Ads).
 
 **Builds the Meta report a client reads at month end — the kind that survives scrutiny.**
 
@@ -202,10 +206,10 @@ single thing that makes the second month better than the first.
 
 ## Related skills
 
-- `facebook-ads-pixel-and-attribution-audit` — run before the first report for a new client. Every
+- `facebook-ads-conversion-tracking-and-pixel-audit` — run before the first report for a new client. Every
   number in the pack depends on it.
-- `facebook-ads-performance-review` — the internal read; this is the external document.
-- `facebook-ads-waste-and-scale` — where next month's commitments come from.
+- `facebook-ads-performance-report` — the internal read; this is the external document.
+- `facebook-ads-wasted-spend-and-scaling` — where next month's commitments come from.
 - `facebook-ads-budget-pacing` — the spend section's underlying analysis.
 - `ppc-analytics` — where the pack covers more than Meta.
 

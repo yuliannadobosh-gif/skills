@@ -7,6 +7,8 @@ description: >
   say the word "report". Also use when the Google Ads section of a client review or QBR is what's
   wanted. For agencies and in-house teams reporting upward. Google Ads only.
 metadata:
+  title: "Google Ads Client Report"
+  short_description: "Writes your monthly Google Ads report for a client, measured against the targets you agreed, with misses explained and next month's plan."
   version: 2.0.0
   category: marketing-and-ads
   sources:
@@ -14,6 +16,8 @@ metadata:
 ---
 
 # Google Ads Client Report
+
+Writes your monthly Google Ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. Google Ads Client Report is a Coupler.io AI agent skill that works with live data from Google Ads.
 
 **Builds the report a client reads at month end — the kind that survives scrutiny.**
 
@@ -253,13 +257,13 @@ first.
 
 | Go here instead when | Skill |
 |---|---|
-| The read is for the operator, not the client | `google-ads-performance-review` |
+| The read is for the operator, not the client | `google-ads-performance-report` |
 | The conversion numbers are doubted — run before publishing | `google-ads-conversion-tracking-audit` |
 | The question is whether this month lands on budget | `google-ads-budget-pacing` |
-| The client wants to know what to cut and where to put it | `google-ads-waste-and-scale` |
+| The client wants to know what to cut and where to put it | `google-ads-wasted-spend-and-scaling` |
 | A KPI miss traces to keyword-level cost | `google-ads-keyword-and-quality-score-analysis` |
-| The gap sits inside Performance Max | `google-ads-pmax-transparency` |
-| An inherited account needs its configuration checked | `google-ads-settings-audit` |
+| The gap sits inside Performance Max | `google-ads-performance-max-analysis` |
+| An inherited account needs its configuration checked | `google-ads-account-settings-audit` |
 | A figure the report needs isn't in any packaged report type | `google-ads-custom-gaql` |
 | The report needs platforms other than Google Ads | `ppc-analytics` |
 

@@ -12,12 +12,16 @@ description: >-
   sources do you support?"), or for adding a source to an existing setup (use the
   create-dataflow skill instead).
 metadata:
-  version: 0.1.0
+  title: "Get Started with Coupler.io"
+  short_description: "Gets you from an empty Coupler.io workspace to your own data in the chat, connecting your first source along the way."
+  version: 0.2.0
   category: capability
   sources: []
 ---
 
-# Get Started
+# Get Started with Coupler.io
+
+Gets you from an empty Coupler.io workspace to your own data in the chat, connecting your first source along the way. Get Started with Coupler.io is a Coupler.io AI agent skill.
 
 You are onboarding a brand-new Coupler.io user. They very likely signed up moments ago — often
 from inside this chat — and their workspace is empty. Your job is to get their FIRST data
@@ -88,18 +92,23 @@ Proceed when list-credentials confirms a credential for their source.
    Name the dataflow for the client.
 2. Confirm before creating, as a prepared default:
    > "I'm ready to create **[dataflow name]**: N source(s) ([entities]), refreshing to answer
-   > *[their job]*. Create it?"
+   > *[their job]*. Create it and pull your data?"
 3. After creating and attaching sources, verify against their stated intent — right accounts,
-   right entities, right date range, right workspace — and say in one line what you checked. If
-   anything is off, fix it before showing any numbers.
+   right entities, right date range, right workspace. Run a **preview** first (run-dataflow with
+   run_mode "preview"): it samples each source quickly and writes nothing, so it needs no
+   confirmation. Then read get-schema for each dataset and check the columns cover what they asked
+   about. If the schema is still pending, check again up to 5 times; if it's still pending, tell them
+   the preview is running and continue on their next message. Say in one line what you checked. If
+   anything is off, fix the source and preview again before the full run.
 
 Proceed when the dataflow is created and verified.
 
 ## Gate 5 — Run it and show them THEIR data
 
-1. Run the dataflow (run-dataflow) and tell them, in one line, that it's fetching their data.
-2. **A run can take longer than this chat turn, and there's no preview yet** — so don't promise
-   instant results. Say it plainly:
+1. Run the full dataflow (run-dataflow with run_mode "full") and tell them, in one line, that it's
+   fetching their data.
+2. **A full run can take longer than this chat turn, and the preview's sample can't be queried** —
+   so don't promise instant results. Say it plainly:
    > "It's pulling your data now — this can take a few minutes. Ping me when you're ready and I'll
    > check whether it's done."
    On their next message, re-check the run status; only continue once the dataset is actually ready.

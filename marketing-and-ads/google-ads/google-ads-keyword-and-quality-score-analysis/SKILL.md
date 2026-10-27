@@ -5,15 +5,19 @@ description: >
   match", "which keywords are worth more budget", "why is my cost per click so high", "find me new
   keywords to bid on" — even when the user never says "keyword". This is the earning view: which
   keywords deserve more money and which are overcharging for the same clicks. For the cutting view,
-  use google-ads-waste-and-scale instead. Google Ads only.
+  use google-ads-wasted-spend-and-scaling instead. Google Ads only.
 metadata:
+  title: "Google Ads Keyword and Quality Score Analysis"
+  short_description: "Shows which Google Ads keywords make money, where a low Quality Score is pushing up your cost per click, and what to fix first."
   version: 2.0.0
   category: marketing-and-ads
   sources:
     - Google Ads
 ---
 
-# Google Ads Keyword And Quality Score Analysis
+# Google Ads Keyword and Quality Score Analysis
+
+Shows which Google Ads keywords make money, where a low Quality Score is pushing up your cost per click, and what to fix first. Google Ads Keyword and Quality Score Analysis is a Coupler.io AI agent skill that works with live data from Google Ads.
 
 **Shows which keywords deserve more money, and which are quietly overcharging you for the same
 clicks.**
@@ -131,7 +135,7 @@ on £7,000 is the finding. Then sort into four groups, because each needs someth
 
 | Group | Read | Action |
 |---|---|---|
-| Beating target, demand still available | Proven, with room | Fund it — `google-ads-waste-and-scale` sizes the headroom |
+| Beating target, demand still available | Proven, with room | Fund it — `google-ads-wasted-spend-and-scaling` sizes the headroom |
 | Beating target, winning most demand | Maxed out | New terms or match types, not more money |
 | Above target, healthy conversion rate | A click cost problem | Bid or relevance — branch on the strategy first |
 | Above target, poor conversion rate | A relevance or landing page problem | The page and the ad, not the bid |
@@ -242,11 +246,11 @@ sibling needs it, and it's what users tire of restating.
 
 | Go here instead when | Skill |
 |---|---|
-| The question is what to cut, not what to fund | `google-ads-waste-and-scale` |
+| The question is what to cut, not what to fund | `google-ads-wasted-spend-and-scaling` |
 | The conversion numbers are doubted — run first | `google-ads-conversion-tracking-audit` |
-| The question is what the account did and why | `google-ads-performance-review` |
+| The question is what the account did and why | `google-ads-performance-report` |
 | Funding a winner needs month-end arithmetic | `google-ads-budget-pacing` |
-| The keywords sit inside Performance Max, where they aren't exposed | `google-ads-pmax-transparency` |
+| The keywords sit inside Performance Max, where they aren't exposed | `google-ads-performance-max-analysis` |
 | The findings are going to a client | `google-ads-client-report` |
 | No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |

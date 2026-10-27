@@ -3,6 +3,7 @@
 !/.gitignore
 !/.gitattributes
 !/README.md
+!/LICENSE
 !/.claude-plugin/
 !/.github/
 !/.github/**
@@ -13,3 +14,5 @@
 !/marketing-and-ads/
 !/capability/
 !/utilities/
+!/.agents/
+!/.claude/

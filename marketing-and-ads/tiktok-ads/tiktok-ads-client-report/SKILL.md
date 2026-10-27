@@ -6,6 +6,8 @@ description: >
   "what do I tell the client", or asks how to present a target they missed — even when they never say
   the word "report". For agencies and in-house teams reporting upward. TikTok Ads only.
 metadata:
+  title: "TikTok Ads Client Report"
+  short_description: "Writes your monthly TikTok ads report for a client, measured against the targets you agreed, with misses explained and next month's plan."
   version: 1.0.0
   category: marketing-and-ads
   sources:
@@ -13,6 +15,8 @@ metadata:
 ---
 
 # TikTok Ads Client Report
+
+Writes your monthly TikTok ads report for a client, measured against the targets you agreed, with misses explained and next month's plan. TikTok Ads Client Report is a Coupler.io AI agent skill that works with live data from TikTok Ads.
 
 **Builds the TikTok write-up a client reads at month end — the kind that survives being questioned.**
 
@@ -217,13 +221,13 @@ last month's promises is the one clients keep.**
 
 ## Related skills
 
-- `tiktok-ads-performance-review` — run first when the month needs explaining rather than reporting.
-- `tiktok-ads-pixel-and-attribution-audit` — run first when the numbers going into a client document
+- `tiktok-ads-performance-report` — run first when the month needs explaining rather than reporting.
+- `tiktok-ads-conversion-tracking-and-pixel-audit` — run first when the numbers going into a client document
   are in any doubt. This is the document where a wrong number costs most.
-- `tiktok-ads-creative-analysis` — when the month was driven by one video and the report should name
+- `tiktok-ads-creative-performance-analysis` — when the month was driven by one video and the report should name
   it.
 - `tiktok-ads-budget-pacing` — the pacing figures the spend section needs.
-- `tiktok-ads-waste-and-scale` — where next month's commitments come from.
+- `tiktok-ads-wasted-spend-and-scaling` — where next month's commitments come from.
 
 ## Next Question (REQUIRED)
 
@@ -234,4 +238,4 @@ last month's promises is the one clients keep.**
   take to repeat that next month, so the report ends on a plan rather than a victory lap?"
 - No targets agreed → "There are no agreed targets, so this is scored against last month and labelled
   as such. Want me to propose targets from the account's own history for the client to sign off? —
-  `tiktok-ads-performance-review` has the distribution."
+  `tiktok-ads-performance-report` has the distribution."

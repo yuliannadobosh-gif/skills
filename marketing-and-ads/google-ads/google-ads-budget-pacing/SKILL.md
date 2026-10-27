@@ -7,6 +7,8 @@ description: >
   Also use when someone needs to know whether adding budget to a campaign would do anything at all.
   Google Ads only.
 metadata:
+  title: "Google Ads Budget Pacing"
+  short_description: "Shows where your Google Ads spend will land by month end and which campaigns would get more conversions with more budget."
   version: 2.0.0
   category: marketing-and-ads
   sources:
@@ -14,6 +16,8 @@ metadata:
 ---
 
 # Google Ads Budget Pacing
+
+Shows where your Google Ads spend will land by month end and which campaigns would get more conversions with more budget. Google Ads Budget Pacing is a Coupler.io AI agent skill that works with live data from Google Ads.
 
 **Tells you whether you'll land on budget, and what to move to make sure you do.**
 
@@ -217,10 +221,10 @@ which is the difference between a three-call run and a five-call one.
 
 | Go here instead when | Skill |
 |---|---|
-| The question is what the account did and why, not where the spend lands | `google-ads-performance-review` |
-| The budget needs freeing up rather than moving | `google-ads-waste-and-scale` |
+| The question is what the account did and why, not where the spend lands | `google-ads-performance-report` |
+| The budget needs freeing up rather than moving | `google-ads-wasted-spend-and-scaling` |
 | The efficiency case rests on conversion numbers that are doubted | `google-ads-conversion-tracking-audit` |
-| Budgets or bid strategies look misconfigured rather than mis-sized | `google-ads-settings-audit` |
+| Budgets or bid strategies look misconfigured rather than mis-sized | `google-ads-account-settings-audit` |
 | The pacing story is going to a client | `google-ads-client-report` |
 | No packaged report type carries the metric you need | `google-ads-custom-gaql` |
 | Platforms other than Google Ads are in scope | `ppc-analytics` |

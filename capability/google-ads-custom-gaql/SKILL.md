@@ -2,12 +2,16 @@
 name: google-ads-custom-gaql
 description: "Use this skill when the user needs Google Ads data that no packaged report type carries, or asks for a Custom GAQL source. Triggers include: 'I need a Google Ads field that isn't in any report', 'can I get hourly Google Ads data', 'break conversions down by action at ad group level', 'product-level Shopping data', 'write me a GAQL query', 'query the Google Ads API directly', or another Google Ads skill reporting that a metric exists in no report type. Configures the source; the analysis belongs to the skill that asked."
 metadata:
+  title: "Google Ads Custom Query (GAQL) Source"
+  short_description: "Pulls Google Ads data that standard reports leave out, like hourly figures or product-level Shopping data, with a custom query."
   category: capability
   sources:
     - Google Ads
 ---
 
-# Google Ads Custom GAQL
+# Google Ads Custom Query (GAQL) Source
+
+Pulls Google Ads data that standard reports leave out, like hourly figures or product-level Shopping data, with a custom query. Google Ads Custom Query (GAQL) Source is a Coupler.io AI agent skill that works with live data from Google Ads.
 
 You configure Custom GAQL sources on Coupler.io dataflows. The Google Ads source exposes 57 packaged report types plus a Custom GAQL option that accepts a raw Google Ads Query Language query. Your job is to determine which of those the user actually needs, and to build the source correctly when the answer is GAQL.
 
@@ -150,7 +154,7 @@ If a plain Append or Join covers it, that's available in the dataset step and is
 
 Confirm the dataflow and dataset, the resource queried, the date window and whether it rolls, and which columns need dividing by 1,000,000. Where you built a combined dataset, say which datasets it draws on and give its `preview_url`.
 
-**This skill configures the source. It does not do the analysis.** Route back to whichever skill asked, or by the user's original question — `google-ads-performance-review`, `google-ads-waste-and-scale`, `google-ads-conversion-tracking-audit` and the rest of the Google Ads pack.
+**This skill configures the source. It does not do the analysis.** Route back to whichever skill asked, or by the user's original question — `google-ads-performance-report`, `google-ads-wasted-spend-and-scaling`, `google-ads-conversion-tracking-audit` and the rest of the Google Ads pack.
 
 ## Error Handling
 

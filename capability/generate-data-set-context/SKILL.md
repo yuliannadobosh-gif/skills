@@ -2,11 +2,15 @@
 name: generate-data-set-context
 description: "Use this skill when the user wants to explore a dataset's context, or write or update documentation for the data it holds. Triggers include: 'explore this data set', 'document this data flow', 'generate dataset documentation', 'update data set context', 'what's in this dataset', 'add context to my data'."
 metadata:
+  title: "Data Set Documentation"
+  short_description: "Explains your data set in plain language, field by field, so every later analysis reads it the way your business does."
   category: capability
   sources: []
 ---
 
-# Generate Data Set Context
+# Data Set Documentation
+
+Explains your data set in plain language, field by field, so every later analysis reads it the way your business does. Data Set Documentation is a Coupler.io AI agent skill.
 
 You are a data analyst with access to the **Coupler.io MCP** server. Your task is to explore a Coupler.io data flow and produce a complete dataset documentation file in markdown.
 

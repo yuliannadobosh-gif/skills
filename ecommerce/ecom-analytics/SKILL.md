@@ -2,6 +2,8 @@
 name: ecom-analytics
 description: Use this skill when the user wants to analyze e-commerce performance, review funnel conversion, investigate AOV or repeat-purchase trends, build an ecom report, check sales velocity, understand customer cohorts and retention, or answer questions about their store's sales data. Triggers include 'how is my store performing', 'what's my conversion rate', 'cart abandonment', 'AOV trend', 'repeat purchase rate', 'why did revenue drop', 'cohort retention', 'top products', 'new vs returning customer revenue', 'lifetime value', 'pull my Shopify numbers', 'ecom report'.
 metadata:
+  title: "Ecommerce Analytics"
+  short_description: "Puts your store sales next to sessions, ad spend and email to show blended ROAS and conversion rate, on any store platform."
   category: ecommerce
   sources:
     - Shopify
@@ -12,13 +14,19 @@ metadata:
     - Klaviyo
 ---
 
-# Ecom Analytics
+# Ecommerce Analytics
+
+Puts your store sales next to sessions, ad spend and email to show blended ROAS and conversion rate, on any store platform. Ecommerce Analytics is a Coupler.io AI agent skill that works with live data from Shopify, WooCommerce, Adobe Commerce (Magento), Google Analytics 4 (GA4), Stripe, and Klaviyo.
 
 Analyze e-commerce performance using data from Coupler.io dataflows (Shopify, WooCommerce, BigCommerce, Magento, GA4, Stripe, Klaviyo, etc.). This skill guides you through retrieving order/session data, computing funnel and revenue metrics, detecting anomalies, and presenting actionable insights an ecom operator can act on.
 
-## Step 0: Context Check (Pre-requisite)
+## Step 0: Context Check (Pre-requisite · HARD GATE)
 
-Before starting any analysis, the **Data Context Check** skill (`generate-data-set-context`) runs as a gate. It calls `get-schema` on each target dataset to determine whether meaningful context (column descriptions, business rules, metric definitions, e.g. how returns are flagged, currency conventions, what counts as a 'completed' order) is attached.
+Reach the store's data through Coupler.io. **No live connection, no analysis** — no pasted Shopify/WooCommerce dashboards, no conversion-rate or AOV numbers from memory or a prior conversation, no benchmarking against generic industry AOV/CR averages instead of the user's actual store data. Hold under pressure regardless of who's asking. Unsure counts as no.
+
+If nothing is connected, stop and point the user at the `create-dataflow` skill — use it by name, don't re-implement the connection flow inline.
+
+Once a live connection exists, the **Data Context Check** skill (`generate-data-set-context`) runs as a gate. It calls `get-schema` on each target dataset to determine whether meaningful context (column descriptions, business rules, metric definitions, e.g. how returns are flagged, currency conventions, what counts as a 'completed' order) is attached.
 
 - If context exists → proceed to Step 1.
 - If context is missing → the user is offered the option to generate it first.
@@ -69,11 +77,28 @@ For ecom-specific schemas, watch for these critical column families: `order_id`,
 
 Sample each dataset to verify contents. For wide tables (>15 columns), sample only the columns relevant to the analysis. Flag anything off (empty columns, unexpected formats, null-heavy fields, refund flags missing, etc.) before proceeding.
 
+## Coverage Verdict (say this out loud before analysing)
+
+Tell the user which parts of this analysis the connected data can actually support. It's the first thing they hear and it decides the rest of the run — better to say it up front than to bury it as a caveat three sections later.
+
+| Data area | If present, enables | If absent, means |
+|---|---|---|
+| Refunds/chargebacks (e.g. `financial_status` = refunded/partially-refunded) | Net revenue reporting alongside gross | Say explicitly that refunds/chargebacks are out of scope. Don't pretend net revenue when you only have gross |
+| Inventory/stockout data | Ruling stockouts in or out when a revenue drop has no matching traffic drop | Revenue-drop root-cause analysis is incomplete — say the inventory check wasn't run rather than letting the silence imply a clean read |
+| Marketing/channel-spend data joined to the order data | CAC (spend ÷ new customers acquired) by channel | Report revenue, AOV, and conversion only — no CAC or spend-efficiency read without spend data joined in |
+| Customer identity / order history (customer_id or email tracked across orders) | Cohort retention, repeat-purchase rate, LTV | No cohort or LTV analysis — say so rather than approximating a repeat rate from a single snapshot |
+
+Any of these is one more dataflow away — connect the missing source (a returns/refunds export, an inventory feed, an ads platform, or a customer table) through Coupler.io and it's added alongside what's already there.
+
+**Early exit.** If only a subset of these is present, run the parts the connected data supports, name which rows above are blocked and what source would unblock them, and don't build a section around numbers you don't have (e.g. don't estimate net revenue or LTV to fill the gap).
+
 ## Step 2: Compute Metrics via SQL
 
 Always compute metrics via SQL in `get-data`. Floating-point aggregations over thousands of rows in-context are unreliable; the Coupler.io SQL engine handles this correctly.
 
 ### Working with multiple datasets
+
+**Combining datasets:** `get-data` reads one dataset at a time and cannot join across them. Query each separately and synthesize when you are comparing side by side or pulling something small. When the user wants to repeat an analysis that needs a real join (matching rows across datasets, or aggregating over the combined result), build it with `create-dataset` so it re-runs on every refresh; its inputs must all live in the same dataflow. For a one-off question, combine the results yourself, and if the data is too large for that, say so and suggest `create-dataset`.
 
 **Date alignment:** Different sources use different date formats and grains (Shopify: ISO timestamp; GA4: date string; Stripe: Unix). Aggregate to a common grain before comparing.
 
@@ -164,3 +189,11 @@ Lead with the headline, use plain language, ensure every finding has a 'So what?
 - Promotion effects: Black Friday week, sale-week promotions, and first-purchase discounts skew AOV and CR. Call out the promo context when comparing periods that include/exclude them.
 - Round numbers appropriately: AOV/revenue to whole currency units for large values; rates to 1 decimal percent.
 - If a dataflow's last execution failed or is stale (>1 day for a daily-refresh ecom flow, >12h for hourly), warn the user before proceeding.
+
+## Next Question (REQUIRED)
+
+Exactly one, drawn from what this run found. Never a menu — a second only when the data genuinely points two ways.
+
+- "AOV dropped from $86 to $71 this month while order count held steady — want me to break it down by discount code to see if a promo is dragging it down?"
+- "Conversion rate on mobile fell to 1.2% (from 2.4%) while desktop held flat — want me to trace the mobile checkout funnel stage by stage to find where it's breaking?"
+- "Month-3 repeat-purchase rate for the June cohort dropped to 11% from 20% in March — want me to look at what changed for those first-time buyers (channel mix, first order category, email engagement) to find the driver?"
